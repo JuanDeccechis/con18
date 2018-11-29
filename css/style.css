@@ -1,0 +1,183 @@
+header{
+	text-align: center;
+}
+
+body{				/*http://ccat.sas.upenn.edu/gifs/backgrounds/*/
+	/*background-image: url("http://www.iac.es/proyecto/SOMYCE/gifs/background.jpg"); */
+	/*background-image: url("http://ccat.sas.upenn.edu/gifs/backgrounds/circuit.jpg");*/
+	/*background-image: url("http://ccat.sas.upenn.edu/gifs/backgrounds/greysand.gif");*/
+	background-image: url("http://ccat.sas.upenn.edu/gifs/backgrounds/marble1.jpg");
+	/*background: #4e5963 url(pat.png) top left repeat;*/
+
+}
+
+p, h4{
+	text-align: center;
+	margin-top: 5px;
+}
+
+.eliminada {
+	color: red;
+	text-align: center;
+	
+}
+
+h1{
+	display: inline-block !important;
+	font-family: Arial !important;
+	color: white !important;
+	background-color: darkblue;
+	border:solid lightblue 10px;
+	padding: 5px;
+	display: flex;   
+    flex-wrap: nowrap;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 0px;
+}
+
+form input{
+    margin-bottom: 10px;
+}
+
+.cuerpo{
+	/*clear: both;*/
+	font-family: sans-serif;
+}
+
+th, td, table{
+	border: 1px solid black;
+}
+
+footer h4{
+	/*clear: both;*/
+	font-family: Arial;
+	text-align: right;
+}
+
+.list-group{
+	border: 10px solid blue !important;
+	background-color: lightblue !important;
+}
+
+/* achica el tamaño de la fuente*/
+@media (max-width: 550px){
+	h1{
+		font-size: 1.5em !important;
+	}
+}
+
+/* achica el ancho del logo*/
+.logo{
+	width: 90%;
+}
+@media (min-width: 760px) and (max-width: 991px){
+	.logo{
+		width: 50%;
+	}
+}
+
+.btn-warning{
+	color: white !important;
+}
+button{
+	font-weight: bold !important;
+}
+
+.table thead th{
+	border: 1px solid black !important;	
+}
+
+thead, .thead{
+	color: darkblue;
+	background-color: lightblue;
+	text-align: center;
+	font-weight: bold;
+	width: 200px;
+}
+
+.thead{
+	color: grey !important;
+}
+/* filas pares fondo gris*/
+tr:nth-child(even){ 
+	background-color: lightgrey;
+}
+
+tr{
+	text-align: center;
+}
+
+.filaResaltada{
+	font-weight: bold !important;
+	color: red !important;	
+}
+
+form{
+	margin-top: 5px;
+}
+
+/* oculta */
+.oculto{
+	display: none;
+}
+
+/* ancho del input de tiempo (porque ocupa 12 columnas)*/
+@media (max-width: 550px){
+	.inputNumber{
+		width: 35% !important;
+	}
+}
+@media (min-width: 550px){
+	.inputNumber{
+		width: 10% !important;
+	}
+}
+
+/* ancho de los input de números*/
+.col-md-6 .inputNumber{
+	width: 20% !important;
+}
+
+.loader{
+	height: 100px;
+	width: 100px;
+	border: 10px solid #E0E0E0;
+	border-top: 10px solid #424242;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+@keyframes spin{
+	100% {transform: rotate(360deg);}
+}
+
+
+
+
+.centrado{
+	font-family: "Segoe UI",Arial,sans-serif;
+	font-size: 17px;
+	cursor: pointer;
+	justify-content: center;
+	/*DESDE ACA NO ANDAAA. Intenta alinear el contenido de la botonera*/
+	vertical-align: middle;
+	text-align: center;
+	display: flex;   
+    flex-wrap: nowrap;
+	align-content: center;
+	align-items: center;
+}
+
+.nav-link{
+	color: lightgray !important;
+}
+
+.nav-link:hover{
+	color: white !important;
+	font-weight:bold;
+	font-style: oblique;
+}

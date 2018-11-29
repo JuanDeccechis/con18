@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- https://www.chartjs.org/samples/latest/ -->
+<!-- dentro de eso: https://www.chartjs.org/samples/latest/charts/area/line-datasets.html y https://www.chartjs.org/samples/latest/charts/line/multi-axis.html -->
+<!-- https://www.chartjs.org/docs/latest/developers/updates.html -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <base href="//localhost/proyectos/concurso2018/"> -->
+	<title>Investigación Operativa</title>
+	<!-- Bootstrap -->
+    <link href="bootstrap-4.1.0-dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- historicoChart - ChartJS -->
+    <link rel="stylesheet" href="css/chartjs.css">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> -->
+	<!-- <script src="utils.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	
+</head>
+<body>
+	<header>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 offset-lg-0 offset-2"> 
+            <h1>Investigacion Operativa - Practicos</h1>
+          </div>
+        </div>
+      </div>
+    </header>
+        <!-- bootstrap nav (botonera) -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse centrado" id="navbarToggler">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                  <a class="js-juegos nav-link"> Decisiones <span class="sr-only">(current)</span> </a>
+                  <!-- <a class="nav-link js-juegos" id="topnavbtn_tutorials" href="javascript:void(0);" onclick="w3_open_nav(&quot;tutorials&quot;)" title="Tutorials">Decisiones - Juegos <i class="fa fa-caret-down" style="display: none;"></i><i class="fa fa-caret-up" style="display: inline;"></i></a> -->
+                </li>
+                <li class="nav-item">
+                  <a class="js-catedras-admin nav-link"> Programacion Lineal <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item" >
+                  <a class="js-calendario nav-link"> Reemplazo <span class="sr-only">(current)</span> </a>
+                </li>
+                <li class="nav-item">
+                  <a class="js-catedras nav-link"> Stocks <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="js-catedras nav-link"> Camino Critico <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="js-catedras nav-link"> Montecarlo <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="http://invop.alumnos.exa.unicen.edu.ar/" target="_blank">Link a catedra<span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <section class="cuerpo">
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="historic-chart-container">
+        <canvas id="chart"></canvas>
+      </div>
+    </div>
+    
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-4.1.0-dist/js/bootstrap.min.js"></script>
+    <script src="js/historic-utils.js"></script>
+    <script src="js/historic-chart.js"></script>
+    <script src="js/javascript.js"></script>
+
+</body>
+</html>
