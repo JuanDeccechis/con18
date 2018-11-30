@@ -112,34 +112,33 @@ document.addEventListener("DOMContentLoaded", function(){
 		let maxFilas = document.querySelector("#inputEstj1").value;
 		let maxColumnas = document.querySelector("#inputEstj2").value;
 		for (let i = 0; i < filas; i++) {
-			for (let j = 1; j <= columnas; j++) {
-				let fila = i+1;
-				let elem = document.querySelector("#posicion"+fila+j);
+			for (let j = 0; j < columnas; j++) {
+				let fila = i*columnas;
 				if (!sinDominadas[i]){
 					console.log("fila dominada: " + i);
 					filaDominada = i;
-					if(j==columnas)
+					if(j==parseInt(columnas-1))
 						cantFilasDom = parseInt(cantFilasDom) + parseInt(1);
-					if (!elem.classList.contains("eliminada"))
-						elem.classList.add("class", "eliminada");
+					//elem.classList.add("class", "eliminada");
 				}
 				else{
-					matReducida.push(elem.value);
-				}				
+					matReducida.push(matriz[parseInt(fila+j)]);
+					console.log("revisar mat [" + fila + "][" + j + "]: " + matriz[parseInt(fila+j)]);
+				}
 			}
 			console.log("sin dom["+i+"]: "+sinDominadas[i]);
 		}
-		for (let x = filas; x < maxFilas; x++) {
+/*		for (let x = filas; x < maxFilas; x++) {
 			for (let y = columnas; y < maxColumnas; y++) {
 				let elem = document.querySelector("#posicion"+x+y);
 				if (!elem.classList.contains("eliminada"))
 					elem.classList.add("class", "eliminada");
 			}
 		}
-
+*/
 		let filasRed = filas - cantFilasDom;
-		/*for (let i = 0; i < matReducida.length; i++) 
-			console.log("mat red "+matReducida[i]);*/
+		for (let i = 0; i < matReducida.length; i++) 
+			console.log("ANTES DE REC: mat red "+matReducida[i]);
 		if (cantFilasDom > 0)
 			dominadasRecursivas(matReducida, filasRed, columnas);
 		else{
@@ -150,16 +149,18 @@ document.addEventListener("DOMContentLoaded", function(){
 			for (let i = 0; i < columnas; i++) {
 				for (let j = 1; j <= filas; j++) {
 					let col = i+1;
-					let elem = document.querySelector("#posicion"+j+col);
+					let elem = document.querySelector("#posicion"+j+col); //aca creo que va matriz[][]
 					if (!sinDominadas[i]){
 						console.log("columna dominada: " + i);
 						colDominada = i;
 						if(j == filas)
 							cantColumnasDom = parseInt(cantColumnasDom) + parseInt(1);
-						elem.classList.add("class", "eliminada");
+						/*elem.classList.add("class", "eliminada");*/
 					}
 					else{
-						matReducida.push(elem.value);
+						//matReducida.push(elem.value);
+						matReducida.push(matriz[parseInt((j-1)*col+(col-1))]);
+						console.log("revisarULTIMA mat [" + j + "][" + col + "]: " + matriz[parseInt((j-1)*col+(col-1))]);
 					}				
 				}
 				console.log("sin dom["+i+"]: "+sinDominadas[i]);
@@ -169,17 +170,80 @@ document.addEventListener("DOMContentLoaded", function(){
 			let matOrdenada = [];
 			let indiceOrdenado = 0;
 			
-			for (let x = 0; x < filasRed; x++) {
-				for (let y = 0; y < columnasRed; y++) {
-					matOrdenada.push(matReducida[parseInt(x+y*columnasRed)]);
-					//console.log("como matrizFINAL : [" + indiceOrdenado + "][" + y + "]: " + matOrdenada[parseInt(indiceOrdenado+y)]);
+			if (cantColumnasDom > 0){
+				for (let x = 0; x < filasRed; x++) {
+					for (let y = 0; y < columnasRed; y++) {
+						matOrdenada.push(matReducida[parseInt(x+y*columnasRed)]);
+						console.log("como matrizFINAL : [" + indiceOrdenado + "][" + y + "]: " + matOrdenada[parseInt(indiceOrdenado+y)]);
+					}
+					indiceOrdenado = indiceOrdenado + parseInt(columnasRed);	
 				}
-				indiceOrdenado = indiceOrdenado + parseInt(columnas);	
-			}
-			if (cantColumnasDom > 0)
 				dominadasRecursivas(matOrdenada, filasRed, columnasRed);
+			}
+			else{
+				for (let x = 0; x < filasRed; x++) {
+					for (let y = 0; y < columnasRed; y++) {
+						matOrdenada.push(matReducida[parseInt(x*columnasRed+y)]);
+						console.log("como matrizFINAL : [" + indiceOrdenado + "][" + y + "]: " + matOrdenada[parseInt(indiceOrdenado+y)]);
+					}
+					indiceOrdenado = indiceOrdenado + parseInt(columnasRed);	
+				}
+				mostrarMatrizSinDominadas(matOrdenada, filasRed, columnasRed);
+			}
 		}
 
+	}
+
+	function mostrarMatrizSinDominadas(matriz, filas, columnas){
+		let container = document.querySelectorAll(".matriz")[0];
+		let cantHijos = container.childNodes.length;
+		/*borro las posibles matrices anteriores*/
+		for (let i = 0; i < cantHijos; i++) 
+			container.removeChild(container.firstChild);
+		let colTr = document.createElement("thead");
+		/*creo el thead*/
+		for (let k = 0; k <= columnas; k++) {
+			let colId = document.createElement("th");
+			let contenidoId;
+			if (k == 0)
+				contenidoId = document.createTextNode("");
+			else
+				contenidoId = document.createTextNode("B"+k);
+			colId.appendChild(contenidoId);
+			colTr.appendChild(colId);
+		}
+		container.appendChild(colTr);
+		/*creo toda la tabla*/
+		for (let i = 1; i <= filas; i++) {
+			let colTr = document.createElement("tr");
+			for (let j = 0; j <= columnas; j++) {
+				let colId = document.createElement("td");
+				let contenido;
+				let contenidoId;
+				if (j == 0) {
+					contenido = "A"+(i);
+					contenidoId = document.createTextNode(contenido);
+					colId.setAttribute("class", "thead");
+				}
+				else{
+					contenido = matriz[parseInt(i-1+j)];
+					contenidoId = document.createTextNode(contenido);
+
+					/*contenidoId = document.createElement("input");*/
+					
+				}
+				colId.appendChild(contenidoId);
+				colTr.appendChild(colId);		
+			}
+			container.appendChild(colTr);
+		}
+		let botonGenerarGrafico = document.createElement("button");
+		let cont = document.createTextNode("Generar grafico");
+		botonGenerarGrafico.appendChild(cont);
+		botonGenerarGrafico.setAttribute("id", "js-generarGrafico");
+		//setTimeout(function(){ 
+			container.appendChild(botonGenerarGrafico);
+			botonGenerarGrafico.addEventListener("click", resolvente);
 	}
 
 	function sinDominadasPorFila(matriz, filas, columnas){
